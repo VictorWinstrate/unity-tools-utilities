@@ -31,8 +31,8 @@ public static class StringExtensions
 		return prefixIndex < 0;
 	}
 
-	//	The following methods utilise the Knuth-Morris-Pratt (KMP) string matching algorithm.
-
+	//	This ContainsOptimized method utilizes the
+	//	Knuth-Morris-Pratt (KMP) string matching algorithm.
 	public static bool ContainsOptimized(this string text, string substring)
 	{
 		int i = 0;
@@ -64,6 +64,19 @@ public static class StringExtensions
 		return false;
 	}
 
+	public static bool ContainsOptimized(this string text, char targetChar)
+	{
+		for (int i = 0; i < text.Length; i++)
+		{
+			if (text[i] == targetChar)
+				return true;
+		}
+
+		return false;
+	}
+
+	//	The GetPrefix method utilizes
+	//	the first step of KMP string matching algorithm.
 	static int[] GetPrefix(string pattern)
 	{
 		int[] prefix = new int[pattern.Length];
