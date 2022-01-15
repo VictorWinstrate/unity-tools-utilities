@@ -31,13 +31,8 @@ public static class StringExtensions
 		return prefixIndex < 0;
 	}
 
-	public static bool EndsWithOptimized(this string text, char lastCharacter)
-	{
-		if (string.IsNullOrEmpty(text))
-			return false;
-
-		return text[text.Length - 1] == lastCharacter;
-	}
+	public static bool EndsWithOptimized(this string text, char lastCharacter) =>
+		!string.IsNullOrEmpty(text) && text[text.Length - 1] == lastCharacter;
 
 	//	This ContainsOptimized method utilizes the
 	//	Knuth-Morris-Pratt (KMP) string matching algorithm.
