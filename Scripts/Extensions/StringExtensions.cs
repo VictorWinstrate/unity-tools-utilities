@@ -75,6 +75,34 @@ public static class StringExtensions
 		return false;
 	}
 
+	public static string Substring(this string text, int startIndex, string stopString)
+	{
+		if (string.IsNullOrEmpty(text))
+			return string.Empty;
+
+		if (text.ContainsOptimized(stopString))
+		{
+			int stopStringLocation = text.IndexOf(stopString);
+			return text.Substring(startIndex, stopStringLocation);
+		}
+
+		return text.Substring(startIndex);
+	}
+
+	public static string Substring(this string text, int startIndex, char stopChar)
+	{
+		if (string.IsNullOrEmpty(text))
+			return string.Empty;
+
+		if (text.ContainsOptimized(stopChar))
+		{
+			int stopCharLocation = text.IndexOf(stopChar);
+			return text.Substring(startIndex, stopCharLocation);
+		}
+
+		return text.Substring(startIndex);
+	}
+
 	//	The GetPrefix method utilizes
 	//	the first step of KMP string matching algorithm.
 	static int[] GetPrefix(string pattern)
