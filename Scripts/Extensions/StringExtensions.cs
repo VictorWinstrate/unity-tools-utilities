@@ -31,6 +31,9 @@ public static class StringExtensions
 		return prefixIndex < 0;
 	}
 
+	public static bool EndsWithOptimized(this string text, char lastCharacter) =>
+		text[text.Length - 1] == lastCharacter;
+
 	//	This ContainsOptimized method utilizes the
 	//	Knuth-Morris-Pratt (KMP) string matching algorithm.
 	public static bool ContainsOptimized(this string text, string substring)
