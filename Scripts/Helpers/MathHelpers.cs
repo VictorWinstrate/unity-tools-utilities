@@ -12,6 +12,9 @@ public static class MathHelpers
 		ZAxis = 2,
 	}
 
+	public static bool IsBetweenTwoValues(double min, double value, double max) =>
+		min <= value && value <= max;
+
 	public static bool IsBetweenTwoValues(float min, float value, float max) =>
 		min <= value && value <= max;
 
