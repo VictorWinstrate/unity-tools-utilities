@@ -60,4 +60,28 @@ public static class EnumExtensions
 			? array[array.Length - 1]
 			: array[j];
 	}
+
+	public static int GetTotalValues<T>(this T src) where T : struct, IConvertible
+	{
+		if (!typeof(T).IsEnum)
+		{
+			throw new ArgumentException(
+				string.Format(_argumentExceptionFormat, typeof(T)));
+		}
+
+		var array = (T[]) Enum.GetValues(src.GetType());
+		return array.Length;
+	}
+
+	public static T[] GetValues<T>(this T src) where T : struct, IConvertible
+	{
+		if (!typeof(T).IsEnum)
+		{
+			throw new ArgumentException(
+				string.Format(_argumentExceptionFormat, typeof(T)));
+		}
+
+		var array = (T[]) Enum.GetValues(src.GetType());
+		return array;
+	}
 }
