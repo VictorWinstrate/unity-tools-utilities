@@ -4,7 +4,7 @@ public static class EnumExtensions
 {
 	const string _argumentExceptionFormat = "{0} must be an enumerated type";
 
-	public static bool HasNext<T>(this T src) where T : struct, IConvertible
+	public static bool HasNextValue<T>(this T src) where T : struct, IConvertible
 	{
 		if (!typeof(T).IsEnum)
 		{
@@ -18,7 +18,7 @@ public static class EnumExtensions
 		return j < array.Length;
 	}
 
-	public static T Next<T>(this T src) where T : struct, IConvertible
+	public static T GetNextValue<T>(this T src) where T : struct, IConvertible
 	{
 		if (!typeof(T).IsEnum)
 		{
@@ -31,7 +31,7 @@ public static class EnumExtensions
 		return (array.Length == j) ? array[0] : array[j];
 	}
 
-	public static bool HasPrev<T>(this T src) where T : struct, IConvertible
+	public static bool HasPreviousValue<T>(this T src) where T : struct, IConvertible
 	{
 		if (!typeof(T).IsEnum)
 		{
@@ -45,7 +45,7 @@ public static class EnumExtensions
 		return j >= 0;
 	}
 
-	public static T Prev<T>(this T src) where T : struct, IConvertible
+	public static T GetPreviousValue<T>(this T src) where T : struct, IConvertible
 	{
 		if (!typeof(T).IsEnum)
 		{
