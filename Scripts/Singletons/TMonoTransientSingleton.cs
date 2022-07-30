@@ -6,21 +6,21 @@ using UnityEngine;
 /// </summary>
 public abstract class TMonoTransientSingleton<T> : MonoBehaviour where T : TMonoTransientSingleton<T>
 {
-    public static T Instance { get; private set; }
+	public static T Instance { get; private set; }
 
-    const string _exceptionMessageFormat =
-        "Error! More than one instance of a {0} transient singleton exists";
+	const string _exceptionMessageFormat =
+		"Error! More than one instance of a {0} transient singleton exists";
 
-    protected virtual void Awake()
-    {
-        if (Instance != null)
-        {
-            throw new System.Exception(
-                string.Format(_exceptionMessageFormat, typeof(T)));
-        }
+	protected virtual void Awake()
+	{
+		if (Instance != null)
+		{
+			throw new System.Exception(
+				string.Format(_exceptionMessageFormat, typeof(T)));
+		}
 
-        Instance = (T) this;
-    }
+		Instance = (T) this;
+	}
 
-    protected virtual void OnDestroy() => Instance = null;
+	protected virtual void OnDestroy() => Instance = null;
 }

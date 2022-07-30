@@ -1,6 +1,6 @@
-//	RESOURCES:
-//	https://docs.unity3d.com/Manual/BestPracticeUnderstandingPerformanceInUnity5.html
-//	https://youtu.be/2ogqPWJSftE
+// RESOURCES:
+// https://docs.unity3d.com/Manual/BestPracticeUnderstandingPerformanceInUnity5.html
+// https://youtu.be/2ogqPWJSftE
 public static class StringExtensions
 {
 	public static bool StartsWithOptimized(this string text, string prefix)
@@ -34,8 +34,8 @@ public static class StringExtensions
 	public static bool EndsWithOptimized(this string text, char lastCharacter) =>
 		!string.IsNullOrEmpty(text) && text[text.Length - 1] == lastCharacter;
 
-	//	This ContainsOptimized method utilizes the
-	//	Knuth-Morris-Pratt (KMP) string matching algorithm.
+	// This ContainsOptimized method utilizes the
+	// Knuth-Morris-Pratt (KMP) string matching algorithm.
 	public static bool ContainsOptimized(this string text, string substring)
 	{
 		int i = 0;
@@ -106,8 +106,8 @@ public static class StringExtensions
 		return text.Substring(startIndex);
 	}
 
-	//	The GetPrefix method utilizes
-	//	the first step of KMP string matching algorithm.
+	// The GetPrefix method utilizes
+	// the first step of KMP string matching algorithm.
 	static int[] GetPrefix(string pattern)
 	{
 		int[] prefix = new int[pattern.Length];

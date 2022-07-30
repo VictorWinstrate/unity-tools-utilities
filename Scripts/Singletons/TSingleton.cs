@@ -3,25 +3,25 @@
 /// </summary>
 public class TSingleton<T> where T : new()
 {
-    static T _instance;
-    static readonly object _lock = new object();
+	static T _instance;
+	static readonly object _lock = new object();
 
-    public static T Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                lock (_lock)
-                {
-                    if (_instance == null)
-                        _instance = new T();
-                }
-            }
+	public static T Instance
+	{
+		get
+		{
+			if (_instance == null)
+			{
+				lock (_lock)
+				{
+					if (_instance == null)
+						_instance = new T();
+				}
+			}
 
-            return _instance;
-        }
-    }
+			return _instance;
+		}
+	}
 
-    protected TSingleton() { }
+	protected TSingleton() { }
 }

@@ -68,13 +68,13 @@ public class PrefabPool
 
 		if (pool.InactiveInstances.Count > 0)
 		{
-			//  Use available instance.
+			// Use available instance.
 			instance = pool.ActiveInstances[0];
 			pool.InactiveInstances.RemoveAt(0);
 		}
 		else if (pool.InstanceLimit > 0 && pool.ActiveInstances.Count >= pool.InstanceLimit)
 		{
-			//  Pool is at size limit! Reuse oldest active instance.
+			// Pool is at size limit! Reuse oldest active instance.
 			instance = pool.GetOldestActiveInstance();
 			instance.SetActive(false);
 
@@ -83,7 +83,7 @@ public class PrefabPool
 		}
 		else
 		{
-			//  Create new instance.
+			// Create new instance.
 			instance = UnityEngine.Object.Instantiate(prefab);
 			_instanceToPoolMap.Add(instance, pool);
 
@@ -91,11 +91,11 @@ public class PrefabPool
 			instance.name = $"{prefab.name}_{number:N3}";
 		}
 
-		//  Track spawned instance.
+		// Track spawned instance.
 		pool.ActiveInstances.Add(instance);
 		pool.ActiveInstanceToAgeMap.Add(instance, DateTime.Now);
 
-		//  Activate and set transform details.
+		// Activate and set transform details.
 		instance.transform.SetParent(parent);
 		instance.SetActive(true);
 
@@ -116,24 +116,24 @@ public class PrefabPool
 			return;
 		}
 
-		//  Deactivate instance.
+		// Deactivate instance.
 		instance.SetActive(false);
 
-		//  Remove it from pool's ActiveInstance collection.
+		// Remove it from pool's ActiveInstance collection.
 		var pool = _instanceToPoolMap[instance];
 
-		//  Ignore failure to remove in cases when instance exists at start and gets recycled later, or is recycled twice.
+		// Ignore failure to remove in cases when instance exists at start and gets recycled later, or is recycled twice.
 		pool.ActiveInstances.Remove(instance);
 		pool.ActiveInstanceToAgeMap.Remove(instance);
 
-		//  Add it to pool's InactiveInstance collection.
+		// Add it to pool's InactiveInstance collection.
 		if (!pool.InactiveInstances.Contains(instance))
 			pool.InactiveInstances.Add(instance);
 	}
 
 	static void CheckForDestroyedInstances(GameObject prefab, Pool pool)
 	{
-		//  Only do expensive Destroy method if a destroyed instance is found.
+		// Only do expensive Destroy method if a destroyed instance is found.
 		foreach (var instance in pool.ActiveInstances)
 		{
 			if (instance == null)
