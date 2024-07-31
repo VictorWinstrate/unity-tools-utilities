@@ -4,6 +4,7 @@ public static class MathHelpers
 {
 	public const int RightAngle = 90;
 	public const int StraightAngle = 180;
+	public const int RevolutionAngle = 360;
 
 	public enum Axis
 	{
